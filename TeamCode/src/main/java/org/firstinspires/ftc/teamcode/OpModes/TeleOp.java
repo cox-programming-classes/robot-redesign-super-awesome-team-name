@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.OpModes;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.RobotModel.Robot;
+import org.firstinspires.ftc.teamcode.RobotModel.Robots.OneStickTankRobot;
 
 @com.qualcomm.robotcore.eventloop.opmode.TeleOp(name = "TeleOp", group= "Example")
 public class TeleOp extends LinearOpMode
@@ -17,7 +18,7 @@ public class TeleOp extends LinearOpMode
     public void runOpMode()
             throws InterruptedException
     {
-        robot = new Robot(hardwareMap);
+        robot = new OneStickTankRobot(hardwareMap);
 
         waitForStart();
 

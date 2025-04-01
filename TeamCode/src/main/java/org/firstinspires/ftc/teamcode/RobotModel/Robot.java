@@ -7,12 +7,9 @@ import org.firstinspires.ftc.teamcode.RobotModel.DriveTrain.DriveTrain;
 
 import java.lang.reflect.Type;
 
-public class Robot
+public abstract class Robot
 {
-    DriveTrain driveTrain;
-    public Robot(HardwareMap hardwareMap)
-    {
-    }
+    protected DriveTrain driveTrain;
 
     /**
      * update the robot state!  Pass along the gamepads to the different modules.
