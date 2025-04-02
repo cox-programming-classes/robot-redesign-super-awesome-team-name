@@ -1,11 +1,8 @@
-package org.firstinspires.ftc.teamcode.RobotModel;
+package org.firstinspires.ftc.teamcode.RobotModel.Robots;
 
 import com.qualcomm.robotcore.hardware.Gamepad;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.RobotModel.DriveTrain.DriveTrain;
-
-import java.lang.reflect.Type;
 
 public abstract class Robot
 {
