@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.Extensions.GamepadExtensions;
 
-public class OneStickTank extends DriveTrain
+public class StandardTankDrive extends DriveTrain
 {
     // these can be declared Final because once they are initialized they should not be changed.
     private final DcMotor left, right;
@@ -17,7 +17,7 @@ public class OneStickTank extends DriveTrain
      * right -> "rightTread"
      * @param hardwareMap pass down from OpMode.
      */
-    public TwoStickTank(HardwareMap hardwareMap)
+    public StandardTankDrive(HardwareMap hardwareMap)
     {
         left = hardwareMap.get(DcMotor.class, "leftTread");
         right = hardwareMap.get(DcMotor.class, "rightTread");
