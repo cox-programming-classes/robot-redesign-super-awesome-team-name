@@ -17,7 +17,7 @@ public class MecanumDrive extends DriveTrain
         LB = hardwareMap.get(DcMotor.class, "LBMotor");
         LF = hardwareMap.get(DcMotor.class, "LFMotor");
         RB = hardwareMap.get(DcMotor.class, "RBMotor");
-        RF = hardwareMap.get(DcMotor.class, "<RFMotor>");
+        RF = hardwareMap.get(DcMotor.class, "RFMotor");
     }
 
     @Override
