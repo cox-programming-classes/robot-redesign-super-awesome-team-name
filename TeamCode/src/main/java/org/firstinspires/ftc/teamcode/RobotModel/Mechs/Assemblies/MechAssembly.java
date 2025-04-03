@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.RobotModel.Mechs;
+package org.firstinspires.ftc.teamcode.RobotModel.Mechs.Assemblies;
 
 import com.qualcomm.robotcore.hardware.Gamepad;
 

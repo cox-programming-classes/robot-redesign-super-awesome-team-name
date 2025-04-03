@@ -2,7 +2,7 @@ package org.firstinspires.ftc.teamcode.RobotModel.Robots;
 
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-import org.firstinspires.ftc.teamcode.RobotModel.DriveTrain.MecanumDrive;
+import org.firstinspires.ftc.teamcode.RobotModel.DriveTrain.Mecanum.MecanumDrive;
 
 public class MecanumRobot extends Robot
 {

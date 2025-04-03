@@ -2,8 +2,8 @@ package org.firstinspires.ftc.teamcode.RobotModel.Robots;
 
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-import org.firstinspires.ftc.teamcode.RobotModel.DriveTrain.OneStickTank;
-import org.firstinspires.ftc.teamcode.RobotModel.Mechs.ExampleIntakeAssembly;
+import org.firstinspires.ftc.teamcode.RobotModel.DriveTrain.Tank.OneStickTank;
+import org.firstinspires.ftc.teamcode.RobotModel.Mechs.Assemblies.ExampleIntakeAssembly;
 
 public class OneStickTankRobot extends Robot
 {

@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.RobotModel.Mechs;
+package org.firstinspires.ftc.teamcode.RobotModel.Mechs.Components;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Gamepad;
@@ -12,7 +12,6 @@ public class SpinnyIntake extends MechComponent
          * abstract definition of how a Spinny Intake gets controlled.
          * this Implementation should translate the Gamepad Input into motor movement
          * of the Spinny Intake.
-         *
          * The name of this method does not matter at all~ so make it descriptive in the
          * context of the Spinny Intake!
          * @param motor the `intake` motor will be passed here.
@@ -23,7 +22,10 @@ public class SpinnyIntake extends MechComponent
     private final DcMotor intake;
 
     protected SpinnyIntakeControlStrategy strategy;
-    public SpinnyIntake(HardwareMap hardwareMap, String motorName, SpinnyIntakeControlStrategy strategy)
+    public SpinnyIntake(
+            HardwareMap hardwareMap,
+            String motorName,
+            SpinnyIntakeControlStrategy strategy)
     {
         super(strategy);
         intake = hardwareMap.get(DcMotor.class, motorName);
