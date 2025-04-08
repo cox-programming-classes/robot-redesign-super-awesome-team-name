@@ -15,17 +15,20 @@ public  class DoublyLimitedMotor extends MechComponent{
     private DcMotor motor;
     private TouchSensor forwardSensor;
     private TouchSensor reverseSensor;
-
+    private DoublyLimitedMotorControlStrategy strategy;
 
     protected DoublyLimitedMotor(
             HardwareMap hardwareMap,
-            String MotorName,
-            String ForwardSensorName,
-            String ReverseSensorName,
+            String motorName,
+            String forwardSensorName,
+            String reverseSensorName,
             DoublyLimitedMotorControlStrategy strategy
             ) {
         super(strategy);
-
+        motor = hardwareMap.get(DcMotor.class, motorName);
+        forwardSensor = hardwareMap.get(TouchSensor.class, forwardSensorName);
+        reverseSensor = hardwareMap.get(TouchSensor.class, reverseSensorName);
+        this.strategy = strategy;
 
     }
 
@@ -40,6 +43,7 @@ public  class DoublyLimitedMotor extends MechComponent{
 
     @Override
     void move(Gamepad gamepad) {
+        strategy.move(gamepad, this);
 
     }
 
