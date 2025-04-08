@@ -22,6 +22,9 @@ public class SpinnyIntake extends MechComponent
     private final DcMotor intake;
 
     protected SpinnyIntakeControlStrategy strategy;
+
+
+
     public SpinnyIntake(
             HardwareMap hardwareMap,
             String motorName,
