@@ -1,8 +1,10 @@
-package org.firstinspires.ftc.teamcode.RobotModel.DriveTrain;
+package org.firstinspires.ftc.teamcode.RobotModel.DriveTrain.Mecanum;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+
+import org.firstinspires.ftc.teamcode.RobotModel.DriveTrain.DriveTrain;
 
 public class MecanumDrive extends DriveTrain
 {

@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.RobotModel.Robots;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
 import org.firstinspires.ftc.teamcode.RobotModel.DriveTrain.DriveTrain;
-import org.firstinspires.ftc.teamcode.RobotModel.Mechs.MechAssembly;
+import org.firstinspires.ftc.teamcode.RobotModel.Mechs.Assemblies.MechAssembly;
 
 public abstract class Robot
 {

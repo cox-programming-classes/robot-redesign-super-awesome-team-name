@@ -1,10 +1,11 @@
-package org.firstinspires.ftc.teamcode.RobotModel.DriveTrain;
+package org.firstinspires.ftc.teamcode.RobotModel.DriveTrain.Tank;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.Extensions.GamepadExtensions;
+import org.firstinspires.ftc.teamcode.RobotModel.DriveTrain.DriveTrain;
 
 public class StandardTankDrive extends DriveTrain
 {

@@ -2,7 +2,7 @@ package org.firstinspires.ftc.teamcode.RobotModel.Robots;
 
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-import org.firstinspires.ftc.teamcode.RobotModel.DriveTrain.StandardTankDrive;
+import org.firstinspires.ftc.teamcode.RobotModel.DriveTrain.Tank.StandardTankDrive;
 
 public class StandardTankRobot extends Robot
 {
