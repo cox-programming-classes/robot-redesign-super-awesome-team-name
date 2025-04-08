@@ -3,11 +3,13 @@ package org.firstinspires.ftc.teamcode.RobotModel.Mechs.Assemblies;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.teamcode.RobotModel.Mechs.Components.Claw;
 import org.firstinspires.ftc.teamcode.RobotModel.Mechs.Components.SpinnyIntake;
 
 public class ExampleIntakeAssembly extends MechAssembly
 {
     private final SpinnyIntake intake;
+    private final Claw claw;
     public ExampleIntakeAssembly(HardwareMap hardwareMap)
     {
         intake = new SpinnyIntake(hardwareMap, "spinner",
@@ -19,9 +21,19 @@ public class ExampleIntakeAssembly extends MechAssembly
                        else
                            motor.setPower(0);
                 });
+
+        claw = new Claw(hardwareMap, "claw",
+                (servo, gamepad) ->
+                {
+                    if(gamepad.left_bumper)
+                        servo.setPosition(1);
+                    if(gamepad.right_bumper)
+                        servo.setPosition(0);
+                });
     }
     @Override
     public void giveInstructions(Gamepad gamepad) {
         intake.move(gamepad);
+        claw.move(gamepad);
     }
 }
