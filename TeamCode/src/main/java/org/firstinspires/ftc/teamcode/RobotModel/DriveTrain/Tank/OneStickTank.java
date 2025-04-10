@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Extensions.GamepadExtensions;
 import org.firstinspires.ftc.teamcode.RobotModel.DriveTrain.DriveTrain;
 
@@ -116,5 +117,15 @@ public class OneStickTank extends DriveTrain
             return throttle;
 
         return throttle * (1 + turnBias);
+    }
+
+    /**
+     * Don't need anything here yet, might be useful in the future
+     * @param telemetry
+     */
+    @Override
+    public void updateTelemetry(Telemetry telemetry)
+    {
+
     }
 }

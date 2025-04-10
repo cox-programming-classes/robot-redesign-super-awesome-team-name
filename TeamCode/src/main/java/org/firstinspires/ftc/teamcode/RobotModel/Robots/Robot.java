@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.RobotModel.Robots;
 
 import com.qualcomm.robotcore.hardware.Gamepad;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.RobotModel.DriveTrain.DriveTrain;
 import org.firstinspires.ftc.teamcode.RobotModel.Mechs.Assemblies.MechAssembly;
 
@@ -9,6 +10,11 @@ public abstract class Robot
 {
     protected DriveTrain driveTrain;
     protected MechAssembly mechAssembly;
+
+    public void updateTelemetry(Telemetry telemetry){
+        driveTrain.updateTelemetry(telemetry);
+        mechAssembly.updateTelemetry(telemetry);
+    }
 
     /**
      * update the robot state!  Pass along the gamepads to the different modules.

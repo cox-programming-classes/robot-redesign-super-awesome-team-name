@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.RobotModel.DriveTrain.DriveTrain;
 
 public class MecanumDrive extends DriveTrain
@@ -37,5 +38,16 @@ public class MecanumDrive extends DriveTrain
         RB.setPower(turn + (- vertical - horizontal));
         LF.setPower(turn + (- vertical - horizontal));
         LB.setPower(turn + (- vertical + horizontal));
+    }
+
+
+    /**
+     * Don't need anything here yet, might be useful in the future
+     * @param telemetry
+     */
+    @Override
+    public void updateTelemetry(Telemetry telemetry)
+    {
+
     }
 }
