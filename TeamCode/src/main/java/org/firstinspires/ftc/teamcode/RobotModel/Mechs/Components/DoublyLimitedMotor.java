@@ -17,7 +17,15 @@ public  class DoublyLimitedMotor extends MechComponent{
     private TouchSensor reverseSensor;
     private DoublyLimitedMotorControlStrategy strategy;
 
-    protected DoublyLimitedMotor(
+    /**
+     * The forward sensor is the sensor that is hit when the motor is given positive power
+     * @param hardwareMap pass this down from on high
+     * @param motorName name of the motor in the driver station configuration
+     * @param forwardSensorName name of the forward sensor in the driver station configuration
+     * @param reverseSensorName name of the reverse sensor in the driver station configuration
+     * @param strategy lambda expression (Gamepad, DoublyLimitedMotor) for translating gamepad input into motor movement
+     */
+    public DoublyLimitedMotor(
             HardwareMap hardwareMap,
             String motorName,
             String forwardSensorName,
@@ -32,7 +40,12 @@ public  class DoublyLimitedMotor extends MechComponent{
 
     }
 
-    protected void setPower(double power){
+    /**
+     * this is a decorator method that checks to see if the motor can go forward or reverse before setting motor power
+     * if the motor cannot move in that direction, it sets the power to zero
+     * @param power assumes that power is between -1 and 1, and that the dead zone is applied
+     */
+    public void setPower(double power){
 
         if ((power > 0 && !canGoForward() )|| (power > 0 && !canGoReverse())) {
             power = 0;
@@ -42,7 +55,7 @@ public  class DoublyLimitedMotor extends MechComponent{
     }
 
     @Override
-    void move(Gamepad gamepad) {
+    public void move(Gamepad gamepad) {
         strategy.move(gamepad, this);
 
     }
