@@ -20,7 +20,8 @@ public class TeleOp extends LinearOpMode
             throws InterruptedException
     {
         robot = new MecanumRobot(hardwareMap);
-
+        telemetry.addLine("initialized");
+        telemetry.update();
         waitForStart();
 
         // run until the end of the match (driver presses STOP)
