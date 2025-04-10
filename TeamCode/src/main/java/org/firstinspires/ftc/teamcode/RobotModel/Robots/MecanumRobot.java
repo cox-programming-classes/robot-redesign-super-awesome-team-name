@@ -10,6 +10,6 @@ public class MecanumRobot extends Robot
     public MecanumRobot(HardwareMap hardwareMap)
     {
         driveTrain = new MecanumDrive(hardwareMap);
-        mechAssembly = new CascadeArm(hardwareMap); 
+        mechAssembly = new CascadeArm(hardwareMap);
     }
 }
