@@ -62,11 +62,6 @@ public  class DoublyLimitedMotor extends MechComponent{
 
     }
 
-    public void update(Telemetry telemetry){
-        telemetry.addData("motor position", motor.getCurrentPosition());
-        telemetry.addData("forward limit switch state", forwardSensor.isPressed());
-        telemetry.addData("reverse limit switch state", reverseSensor.isPressed());
-    }
 
 
     /**

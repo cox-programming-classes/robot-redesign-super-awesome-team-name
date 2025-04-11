@@ -35,12 +35,11 @@ public class CascadeArm extends MechAssembly {
                 hardwareMap,
                 "clawServo",
                 (servo, gamepad) -> {
-                    if(gamepad.a) {
-                        servo.setPosition(1);
-                    }
-                    if(gamepad.b) {
-                        servo.setPosition(0);
-                    }
+                    if (gamepad.a) servo.setPosition(1.0);
+                    if (gamepad.b) servo.setPosition(0.0);
+                },
+                (servo, telemetry) -> {
+                    telemetry.addData("Claw Position", servo.getPosition());
                 }
         );
     }
@@ -55,7 +54,5 @@ public class CascadeArm extends MechAssembly {
     @Override
     public void updateTelemetry(Telemetry telemetry) {
         claw.update(telemetry);
-        cascade.update(telemetry);
-        drawbridge.update(telemetry);
     }
 }

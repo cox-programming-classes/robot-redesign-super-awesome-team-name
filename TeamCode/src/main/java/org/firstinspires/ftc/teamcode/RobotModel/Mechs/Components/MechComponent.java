@@ -27,4 +27,5 @@ public abstract class MechComponent
      * @param gamepad gamepad passed down from the MechAssembly
      */
     abstract void move(Gamepad gamepad);
+    abstract void update(Telemetry telemetry);
 }
