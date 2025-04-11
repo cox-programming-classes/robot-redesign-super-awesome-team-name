@@ -4,18 +4,23 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
+
 public class Claw extends MechComponent
 {
+
     public interface ClawControlStrategy extends IControlStrategy
     {
         public void chomp(Servo servo, Gamepad gamepad);
+
     }
     public Servo servo;
 
     protected ClawControlStrategy strategy;
     public Claw(HardwareMap hardwareMap,
                 String servoName,
-                ClawControlStrategy strategy)
+                ClawControlStrategy strategy
+                )
     {
         super(strategy);
         servo = hardwareMap.get(Servo.class, servoName);
@@ -27,4 +32,7 @@ public class Claw extends MechComponent
         strategy.chomp(servo, gamepad);
     }
 
+    public void update(Telemetry telemetry) {
+        telemetry.addData("Claw Servo Position", servo.getPosition());
+    }
 }

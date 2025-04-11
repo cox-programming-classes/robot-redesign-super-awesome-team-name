@@ -2,6 +2,8 @@ package org.firstinspires.ftc.teamcode.RobotModel.Mechs.Components;
 
 import com.qualcomm.robotcore.hardware.Gamepad;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
+
 public abstract class MechComponent
 {
     /**

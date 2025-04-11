@@ -27,6 +27,7 @@ public class TeleOp extends LinearOpMode
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
             robot.update(gamepad1, gamepad2);
+            robot.updateTelemetry(telemetry);
         }
     }
 }

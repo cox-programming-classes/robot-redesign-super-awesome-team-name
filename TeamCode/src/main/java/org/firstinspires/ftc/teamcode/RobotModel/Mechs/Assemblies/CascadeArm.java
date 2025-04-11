@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.RobotModel.Mechs.Assemblies;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Extensions.GamepadExtensions;
 import org.firstinspires.ftc.teamcode.RobotModel.Mechs.Components.Claw;
 import org.firstinspires.ftc.teamcode.RobotModel.Mechs.Components.DoublyLimitedMotor;
@@ -33,7 +34,7 @@ public class CascadeArm extends MechAssembly {
         claw = new Claw(
                 hardwareMap,
                 "clawServo",
-                (servo,gamepad) -> {
+                (servo, gamepad) -> {
                     if(gamepad.a) {
                         servo.setPosition(1);
                     }
@@ -49,5 +50,12 @@ public class CascadeArm extends MechAssembly {
         cascade.move(gamepad);
         drawbridge.move(gamepad);
         claw.move(gamepad);
+    }
+
+    @Override
+    public void updateTelemetry(Telemetry telemetry) {
+        claw.update(telemetry);
+        cascade.update(telemetry);
+        drawbridge.update(telemetry);
     }
 }

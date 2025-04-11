@@ -1,8 +1,11 @@
 package org.firstinspires.ftc.teamcode.RobotModel.Mechs.Assemblies;
 
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.RobotModel.Mechs.Components.Claw;
 import org.firstinspires.ftc.teamcode.RobotModel.Mechs.Components.SpinnyIntake;
 
@@ -35,5 +38,10 @@ public class ExampleIntakeAssembly extends MechAssembly
     public void giveInstructions(Gamepad gamepad) {
         intake.move(gamepad);
         claw.move(gamepad);
+    }
+
+    @Override
+    public void updateTelemetry(Telemetry telemetry) {
+        
     }
 }

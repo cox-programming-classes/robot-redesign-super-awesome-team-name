@@ -7,6 +7,8 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
+
 public  class DoublyLimitedMotor extends MechComponent{
 
     public interface DoublyLimitedMotorControlStrategy extends IControlStrategy{
@@ -59,6 +61,13 @@ public  class DoublyLimitedMotor extends MechComponent{
         strategy.move(gamepad, this);
 
     }
+
+    public void update(Telemetry telemetry){
+        telemetry.addData("motor position", motor.getCurrentPosition());
+        telemetry.addData("forward limit switch state", forwardSensor.isPressed());
+        telemetry.addData("reverse limit switch state", reverseSensor.isPressed());
+    }
+
 
     /**
      *
