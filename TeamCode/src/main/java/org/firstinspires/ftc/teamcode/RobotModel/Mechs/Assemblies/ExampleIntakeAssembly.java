@@ -32,7 +32,8 @@ public class ExampleIntakeAssembly extends MechAssembly
                         servo.setPosition(1);
                     if(gamepad.right_bumper)
                         servo.setPosition(0);
-                });
+                },
+                (servo, telemetry) -> {});
     }
     @Override
     public void giveInstructions(Gamepad gamepad) {

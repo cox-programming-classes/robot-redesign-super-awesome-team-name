@@ -12,19 +12,26 @@ public class Claw extends MechComponent
     public interface ClawControlStrategy extends IControlStrategy
     {
         public void chomp(Servo servo, Gamepad gamepad);
+    }
+
+    public interface ClawTelemetryStrategy
+    {
         public void update(Servo servo, Telemetry telemetry);
     }
     public Servo servo;
 
     protected ClawControlStrategy strategy;
+    protected ClawTelemetryStrategy telemetryStrategy;
+
     public Claw(HardwareMap hardwareMap,
                 String servoName,
-                ClawControlStrategy strategy
-                )
+                ClawControlStrategy strategy,
+                ClawTelemetryStrategy telemetryStrategy)
     {
         super(strategy);
         servo = hardwareMap.get(Servo.class, servoName);
         this.strategy = strategy;
+        this.telemetryStrategy = telemetryStrategy;
     }
 
     public void move(Gamepad gamepad)
@@ -35,7 +42,7 @@ public class Claw extends MechComponent
     @Override
     public void update(Telemetry telemetry)
     {
-        strategy.update(servo, telemetry);
+        telemetryStrategy.update(servo, telemetry);
     }
 
 }
