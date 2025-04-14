@@ -62,6 +62,10 @@ public  class DoublyLimitedMotor extends MechComponent{
 
     }
 
+    @Override
+    void update(Telemetry telemetry) {
+
+    }
 
 
     /**

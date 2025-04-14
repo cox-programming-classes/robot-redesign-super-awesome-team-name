@@ -43,6 +43,6 @@ public class ExampleIntakeAssembly extends MechAssembly
 
     @Override
     public void updateTelemetry(Telemetry telemetry) {
-        
+        claw.update(telemetry);
     }
 }

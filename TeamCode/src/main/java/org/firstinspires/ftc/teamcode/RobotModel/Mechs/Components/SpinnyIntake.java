@@ -4,6 +4,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
+
 public class SpinnyIntake extends MechComponent
 {
     public interface SpinnyIntakeControlStrategy extends IControlStrategy
@@ -40,5 +42,10 @@ public class SpinnyIntake extends MechComponent
     public void move(Gamepad gamepad)
     {
         strategy.nomNomNom(intake, gamepad);
+    }
+
+    @Override
+    void update(Telemetry telemetry) {
+
     }
 }
