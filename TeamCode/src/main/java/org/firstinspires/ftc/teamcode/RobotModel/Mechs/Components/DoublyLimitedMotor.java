@@ -14,10 +14,17 @@ public  class DoublyLimitedMotor extends MechComponent{
     public interface DoublyLimitedMotorControlStrategy extends IControlStrategy{
         public void move(Gamepad gamepad, DoublyLimitedMotor doublyLimitedMotor);
     }
+
+    public interface DoublyLimitedMotorTelemetryStrategy {
+        public void update(DoublyLimitedMotor dlm, Telemetry telemetry);
+    }
+
     private DcMotor motor;
     private TouchSensor forwardSensor;
     private TouchSensor reverseSensor;
     private DoublyLimitedMotorControlStrategy strategy;
+
+    protected DoublyLimitedMotorTelemetryStrategy telemetryStrategy;
 
     /**
      * The forward sensor is the sensor that is hit when the motor is given positive power
@@ -32,13 +39,15 @@ public  class DoublyLimitedMotor extends MechComponent{
             String motorName,
             String forwardSensorName,
             String reverseSensorName,
-            DoublyLimitedMotorControlStrategy strategy
+            DoublyLimitedMotorControlStrategy strategy,
+            DoublyLimitedMotorTelemetryStrategy telemetryStrategy
             ) {
         super(strategy);
         motor = hardwareMap.get(DcMotor.class, motorName);
         forwardSensor = hardwareMap.get(TouchSensor.class, forwardSensorName);
         reverseSensor = hardwareMap.get(TouchSensor.class, reverseSensorName);
         this.strategy = strategy;
+        this.telemetryStrategy = telemetryStrategy;
 
     }
 
@@ -63,8 +72,9 @@ public  class DoublyLimitedMotor extends MechComponent{
     }
 
     @Override
-    void update(Telemetry telemetry) {
-
+    public void update(Telemetry telemetry)
+    {
+        telemetryStrategy.update(this, telemetry);
     }
 
 
@@ -72,7 +82,7 @@ public  class DoublyLimitedMotor extends MechComponent{
      *
      * @return true if the forward sensor is not pressed
      */
-    protected boolean canGoForward()
+    public boolean canGoForward()
     {
         return ! forwardSensor.isPressed();
     }
@@ -81,7 +91,7 @@ public  class DoublyLimitedMotor extends MechComponent{
      *
      * @return true if the reverse sensor is not pressed
      */
-    protected boolean canGoReverse()
+    public boolean canGoReverse()
     {
         return ! reverseSensor.isPressed();
     }

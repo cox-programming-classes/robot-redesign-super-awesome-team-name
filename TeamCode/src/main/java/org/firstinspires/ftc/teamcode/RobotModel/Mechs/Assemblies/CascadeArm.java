@@ -16,24 +16,33 @@ public class CascadeArm extends MechAssembly {
         cascade = new DoublyLimitedMotor(
                 hardwareMap,
                 "cascadeMotor",
-                "cascadeFS",
-                "cascadeRS",
+                "topLiftLimit",
+                "bottomLiftLimit",
                 (gamepad, dlm) -> {
                  double power = GamepadExtensions.GetLeftStickY(gamepad);
                  dlm.setPower(power);
-                });
+                },
+                ((dlm, telemetry) -> {
+                    telemetry.addData("Can Go Up", dlm.canGoForward());
+                    telemetry.addData("Can Go Down", dlm.canGoReverse());
+                })
+                );
         drawbridge = new DoublyLimitedMotor(
                 hardwareMap,
-                "drawbridgeMotor",
-                "drawbridgeFS",
-                "drawbridgeRS",
+                "drawbridge",
+                "topDrawLimit",
+                "botDrawLimit",
                 (gamepad, dlm) -> {
                     double power = GamepadExtensions.GetRightStickY(gamepad);
                     dlm.setPower(power);
-                });
+                },
+                ((dlm, telemetry) -> {
+                    telemetry.addData("Can Go Up", dlm.canGoForward());
+                    telemetry.addData("Can Go Down", dlm.canGoReverse());
+                }));
         claw = new Claw(
                 hardwareMap,
-                "clawServo",
+                "servo",
                 (servo, gamepad) -> {
                     if (gamepad.a) servo.setPosition(1.0);
                     if (gamepad.b) servo.setPosition(0.0);
@@ -54,5 +63,7 @@ public class CascadeArm extends MechAssembly {
     @Override
     public void updateTelemetry(Telemetry telemetry) {
         claw.update(telemetry);
+        cascade.update(telemetry);
+        drawbridge.update(telemetry);
     }
 }

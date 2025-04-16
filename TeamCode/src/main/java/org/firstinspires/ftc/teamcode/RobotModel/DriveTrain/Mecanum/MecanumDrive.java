@@ -1,10 +1,14 @@
 package org.firstinspires.ftc.teamcode.RobotModel.DriveTrain.Mecanum;
 
+import android.graphics.Path;
+
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.Extensions.GamepadExtensions;
 import org.firstinspires.ftc.teamcode.RobotModel.DriveTrain.DriveTrain;
 
 public class MecanumDrive extends DriveTrain
@@ -15,12 +19,46 @@ public class MecanumDrive extends DriveTrain
     private final DcMotor RB;
     private final DcMotor RF;
 
-    public MecanumDrive(HardwareMap hardwareMap)
+    public static class OrientationConfiguration{
+        DcMotorSimple.Direction lb, lf, rb, rf;
+
+        public OrientationConfiguration(
+                DcMotorSimple.Direction lb,
+                DcMotorSimple.Direction lf,
+                DcMotorSimple.Direction rb,
+                DcMotorSimple.Direction rf
+        )
+        {
+            this.lb = lb;
+            this.lf = lf;
+            this.rb = rb;
+            this.rf = rf;
+        }
+        public DcMotorSimple.Direction getLb(){
+            return lb;
+        }
+        public DcMotorSimple.Direction getLf(){
+            return lf;
+        }
+        public DcMotorSimple.Direction getRb(){
+            return rb;
+        }
+        public DcMotorSimple.Direction getRf(){
+            return rf;
+        }
+    }
+
+    public MecanumDrive(HardwareMap hardwareMap, OrientationConfiguration orientationConfiguration)
     {
-        LB = hardwareMap.get(DcMotor.class, "LBMotor");
-        LF = hardwareMap.get(DcMotor.class, "LFMotor");
-        RB = hardwareMap.get(DcMotor.class, "RBMotor");
-        RF = hardwareMap.get(DcMotor.class, "RFMotor");
+        LB = hardwareMap.get(DcMotor.class, "lb");
+        LB.setDirection(orientationConfiguration.getLb());
+        LF = hardwareMap.get(DcMotor.class, "lf");
+        LF.setDirection(orientationConfiguration.getLf());
+        RB = hardwareMap.get(DcMotor.class, "rb");
+        RB.setDirection(orientationConfiguration.getRb());
+        RF = hardwareMap.get(DcMotor.class, "rf");
+        RF.setDirection(orientationConfiguration.getRf());
+
     }
 
     @Override
@@ -30,14 +68,41 @@ public class MecanumDrive extends DriveTrain
         double horizontal;
         double turn;
 
-        vertical = gamepad.left_stick_y;
-        horizontal = gamepad.left_stick_x;
-        turn = gamepad.right_stick_x;
+        vertical = GamepadExtensions.GetLeftStickY(gamepad);
+        horizontal = GamepadExtensions.GetLeftStickX(gamepad);
+        turn = GamepadExtensions.GetRightStickX(gamepad);
 
-        RF.setPower(turn + (- vertical + horizontal));
-        RB.setPower(turn + (- vertical - horizontal));
-        LF.setPower(turn + (- vertical - horizontal));
-        LB.setPower(turn + (- vertical + horizontal));
+        double angle = Math.atan2(vertical, horizontal);
+        double magnitude = Math.sqrt(Math.pow(horizontal, 2) + Math.pow(vertical, 2));
+
+        double y1 = Math.sin(angle + Math.PI/4) + magnitude;
+        double y2 = Math.sin(angle - Math.PI/4) + magnitude;
+
+        double lf = y1 + turn;
+        double lb = y2 + turn;
+        double rf = y2 - turn;
+        double rb = y1 - turn;
+
+        double n = Math.max(
+                Math.abs(lf),
+                Math.max(
+                        Math.abs(lb),
+                        Math.max(
+                                Math.abs(rf),
+                                Math.abs(rb))));
+
+        if (n > 1.0)
+        {
+            lf/=n;
+            lb/=n;
+            rf/=n;
+            rb/=n;
+        }
+
+        RF.setPower(rf);
+        RB.setPower(rb);
+        LF.setPower(lf);
+        LB.setPower(lb);
     }
 
 
