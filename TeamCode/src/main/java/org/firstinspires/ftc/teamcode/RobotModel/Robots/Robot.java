@@ -8,6 +8,16 @@ import org.firstinspires.ftc.teamcode.RobotModel.Mechs.Assemblies.MechAssembly;
 
 public abstract class Robot
 {
+    public abstract class AutonomousRobot
+    {
+        public AutonomousRobot(DriveTrain.AutonomousDriving driveTrain, MechAssembly.AutonomousMechBehaviors mechAssembly)
+        {
+
+        }
+    }
+
+    public abstract <T extends AutonomousRobot> T getAutonomousRobot();
+
     protected DriveTrain driveTrain;
     protected MechAssembly mechAssembly;
 

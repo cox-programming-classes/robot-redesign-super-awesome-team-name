@@ -12,7 +12,8 @@ import org.firstinspires.ftc.teamcode.RobotModel.DriveTrain.DriveTrain;
 
 public class OneStickTank extends DriveTrain
 {
-    private class LeroyState
+
+    private class LeroyState extends AutonomousDriving
     {
         ElapsedTime _stateTimer;
         double _chargeTime;
@@ -58,6 +59,12 @@ public class OneStickTank extends DriveTrain
             _isActive = false;
             return true;
         }
+    }
+
+    @Override
+    public LeroyState getAutonomousDriving()
+    {
+        return leroyState;
     }
 
     // these can be declared Final because once they are initialized they should not be changed.

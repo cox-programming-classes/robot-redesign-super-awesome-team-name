@@ -9,6 +9,28 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 public class Claw extends MechComponent
 {
 
+    public class AutonomousClawBehaviors extends AutonomousComponentBehaviors
+    {
+        public void open()
+        {
+            servo.setPosition(1);
+        }
+
+        public void close()
+        {
+            servo.setPosition(0);
+        }
+    }
+
+    private AutonomousClawBehaviors auton = new AutonomousClawBehaviors();
+
+    @Override
+    public AutonomousClawBehaviors getAutonomousBehaviors()
+    {
+        return auton;
+    }
+
+
     public interface ClawControlStrategy extends IControlStrategy
     {
         public void chomp(Servo servo, Gamepad gamepad);

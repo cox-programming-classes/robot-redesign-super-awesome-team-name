@@ -11,6 +11,20 @@ import org.firstinspires.ftc.teamcode.RobotModel.Mechs.Components.SpinnyIntake;
 
 public class ExampleIntakeAssembly extends MechAssembly
 {
+    public class AutonomousIntakeAssembly extends AutonomousMechBehaviors
+    {
+        public final SpinnyIntake.AutonomousIntakeBehaviors intake;
+        public final Claw.AutonomousClawBehaviors claw;
+
+        public AutonomousIntakeAssembly(SpinnyIntake.AutonomousIntakeBehaviors intake, Claw.AutonomousClawBehaviors claw)
+        {
+            this.intake = intake;
+            this.claw = claw;
+        }
+    }
+
+    private final AutonomousIntakeAssembly auton;
+
     private final SpinnyIntake intake;
     private final Claw claw;
     public ExampleIntakeAssembly(HardwareMap hardwareMap)
@@ -34,7 +48,15 @@ public class ExampleIntakeAssembly extends MechAssembly
                         servo.setPosition(0);
                 },
                 (servo, telemetry) -> {});
+
+        auton = new AutonomousIntakeAssembly(intake.getAutonomousBehaviors(), claw.getAutonomousBehaviors());
     }
+
+    @Override
+    public AutonomousIntakeAssembly getAutonomousBehaviors() {
+        return auton;
+    }
+
     @Override
     public void giveInstructions(Gamepad gamepad) {
         intake.move(gamepad);

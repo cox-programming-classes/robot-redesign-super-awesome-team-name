@@ -13,6 +13,24 @@ import org.firstinspires.ftc.teamcode.RobotModel.DriveTrain.DriveTrain;
 
 public class MecanumDrive extends DriveTrain
 {
+    public class AutonomousMecanumDrive extends AutonomousDriving
+    {
+        // TODO: Write the Autonomous Methods!
+
+        public void drive(double x, double y, double t)
+        {
+
+        }
+    }
+
+    private final AutonomousMecanumDrive auton = new AutonomousMecanumDrive();
+
+    @Override
+    public AutonomousMecanumDrive getAutonomousDriving()
+    {
+        return auton;
+    }
+
     // these can be declared Final because once they are initialized they should not be changed.
     private final DcMotor LB;
     private final DcMotor LF;

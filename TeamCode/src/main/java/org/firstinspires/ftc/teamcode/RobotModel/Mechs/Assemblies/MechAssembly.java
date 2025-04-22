@@ -11,6 +11,13 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
  */
 public abstract class MechAssembly
 {
+    public abstract class AutonomousMechBehaviors
+    {
+
+    }
+
+    public abstract <T extends AutonomousMechBehaviors> T getAutonomousBehaviors();
+
     /**
      * Pass along gamepad instructions to subcomponents.
      * @param gamepad the Gamepad

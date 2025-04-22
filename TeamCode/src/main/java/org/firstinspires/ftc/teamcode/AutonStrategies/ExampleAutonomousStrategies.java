@@ -1,0 +1,26 @@
+package org.firstinspires.ftc.teamcode.AutonStrategies;
+
+import org.firstinspires.ftc.teamcode.Extensions.ThreadExtensions;
+import org.firstinspires.ftc.teamcode.RobotModel.Robots.MecanumRobot;
+
+public class ExampleAutonomousStrategies
+{
+    public static IAutonomousStrategy MecanumAutonDance(MecanumRobot.AutonomousMecanumRobot robot)
+    {
+        return new IAutonomousStrategy() {
+            @Override
+            public void execute() {
+                robot.driveTrain.drive(0, 1, 0);
+                robot.mechAssembly.drawbridge.goForward();
+                ThreadExtensions.TrySleep(500);
+                robot.driveTrain.drive(0.5, 0, 0.5);
+                ThreadExtensions.TrySleep(500);
+                robot.mechAssembly.drawbridge.stop();
+                robot.mechAssembly.cascade.goForward();
+                ThreadExtensions.TrySleep(1000);
+                robot.driveTrain.drive(0, 0, 0);
+                robot.mechAssembly.cascade.stop();
+            }
+        };
+    }
+}
