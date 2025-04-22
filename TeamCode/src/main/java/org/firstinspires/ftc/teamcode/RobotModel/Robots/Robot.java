@@ -12,7 +12,7 @@ public abstract class Robot
     {
         public AutonomousRobot(DriveTrain.AutonomousDriving driveTrain, MechAssembly.AutonomousMechBehaviors mechAssembly)
         {
-
+            // this requires that any inheriting classes must provide these types of parameters.
         }
     }
 
