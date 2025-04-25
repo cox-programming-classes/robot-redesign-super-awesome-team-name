@@ -9,6 +9,8 @@ public abstract class MechComponent
     /**
      * Override with an implemenation that applies to the Mech in question.
      */
+    public abstract class AutonomousComponentBehaviors { }
+    public abstract <T extends AutonomousComponentBehaviors> T getAutonomousBehaviors();
     protected interface IControlStrategy { }
 
     /**

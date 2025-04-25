@@ -60,6 +60,51 @@ public class MecanumDrive extends DriveTrain
         RF.setDirection(orientationConfiguration.getRf());
 
     }
+    public class AutonomousMecanumDrive extends DriveTrain.AutonomousDriving
+    {
+        //TODO: write this !!!!
+        // add encoders
+        public void drive(double x, double y, double t)
+        {
+            double angle = Math.atan2(y, x);
+            double magnitude = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
+
+            double y1 = Math.sin(angle + Math.PI/4) + magnitude;
+            double y2 = Math.sin(angle - Math.PI/4) + magnitude;
+
+            double lf = y1 + t;
+            double lb = y2 + t;
+            double rf = y2 - t;
+            double rb = y1 - t;
+
+            double n = Math.max(
+                    Math.abs(lf),
+                    Math.max(
+                            Math.abs(lb),
+                            Math.max(
+                                    Math.abs(rf),
+                                    Math.abs(rb))));
+
+            if (n > 1.0)
+            {
+                lf/=n;
+                lb/=n;
+                rf/=n;
+                rb/=n;
+            }
+
+            RF.setPower(rf);
+            RB.setPower(rb);
+            LF.setPower(lf);
+            LB.setPower(lb);
+        }
+    }
+    private final AutonomousMecanumDrive auton = new AutonomousMecanumDrive();
+
+    @Override
+    public AutonomousMecanumDrive getAutonomousDriving() {
+        return auton;
+    }
 
     @Override
     public void drive(Gamepad gamepad)
