@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Extensions.GamepadExtensions;
+import org.firstinspires.ftc.teamcode.RobotModel.DriveTrain.Mecanum.MecanumDrive;
 import org.firstinspires.ftc.teamcode.RobotModel.Mechs.Components.Claw;
 import org.firstinspires.ftc.teamcode.RobotModel.Mechs.Components.DoublyLimitedMotor;
 
@@ -52,6 +53,20 @@ public class CascadeArm extends MechAssembly {
                 }
         );
     }
+
+    public class AutonomousCascadeBehaviors extends MechAssembly.AutonomousMechBehaviors
+    {
+        public void moveClaw(double x) { claw.servo.setPosition(x); }
+
+        public void moveCascade(double x) { cascade.setPower(x); }
+
+        public void moveDrawbridge(double x) { drawbridge.setPower(x); }
+    }
+
+    private final AutonomousCascadeBehaviors auton = new AutonomousCascadeBehaviors();
+
+    @Override
+    public AutonomousCascadeBehaviors getAutonomousBehaviors() { return auton; }
 
     @Override
     public void giveInstructions(Gamepad gamepad) {
