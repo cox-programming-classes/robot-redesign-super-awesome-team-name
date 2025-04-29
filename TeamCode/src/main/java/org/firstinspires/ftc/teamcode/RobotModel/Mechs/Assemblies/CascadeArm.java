@@ -54,7 +54,7 @@ public class CascadeArm extends MechAssembly {
         );
     }
 
-    public class AutonomousCascadeBehaviors extends MechAssembly.AutonomousMechBehaviors
+    public class AutonomousCascadeArmBehaviors extends MechAssembly.AutonomousMechBehaviors
     {
         public void moveClaw(double x) { claw.servo.setPosition(x); }
 
@@ -63,10 +63,10 @@ public class CascadeArm extends MechAssembly {
         public void moveDrawbridge(double x) { drawbridge.setPower(x); }
     }
 
-    private final AutonomousCascadeBehaviors auton = new AutonomousCascadeBehaviors();
+    private final AutonomousCascadeArmBehaviors auton = new AutonomousCascadeArmBehaviors();
 
     @Override
-    public AutonomousCascadeBehaviors getAutonomousBehaviors() { return auton; }
+    public AutonomousCascadeArmBehaviors getAutonomousBehaviors() { return auton; }
 
     @Override
     public void giveInstructions(Gamepad gamepad) {
