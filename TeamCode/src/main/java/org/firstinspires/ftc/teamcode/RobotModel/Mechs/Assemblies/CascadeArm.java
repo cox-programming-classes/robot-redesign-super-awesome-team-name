@@ -56,11 +56,7 @@ public class CascadeArm extends MechAssembly {
 
     public class AutonomousCascadeArmBehaviors extends MechAssembly.AutonomousMechBehaviors
     {
-        public void moveClaw(double x) { claw.servo.setPosition(x); }
-
-        public void moveCascade(double x) { cascade.setPower(x); }
-
-        public void moveDrawbridge(double x) { drawbridge.setPower(x); }
+        
     }
 
     private final AutonomousCascadeArmBehaviors auton = new AutonomousCascadeArmBehaviors();

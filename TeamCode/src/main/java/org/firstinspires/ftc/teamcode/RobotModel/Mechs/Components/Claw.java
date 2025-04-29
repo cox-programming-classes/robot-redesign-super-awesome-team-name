@@ -34,6 +34,22 @@ public class Claw extends MechComponent
         this.telemetryStrategy = telemetryStrategy;
     }
 
+    public class AutonomousClawBehaviors extends AutonomousComponentBehaviors {
+        public void setPosition(double position) {
+            servo.setPosition(position);
+        }
+        public void open() {
+            servo.setPosition(1);
+        }
+        public void close() {
+            servo.setPosition(0);
+        }
+    }
+    @Override
+    public <T extends AutonomousComponentBehaviors> T getAutonomousBehaviors() {
+        return null;
+    }
+
     public void move(Gamepad gamepad)
     {
         strategy.chomp(servo, gamepad);

@@ -8,6 +8,8 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.RobotModel.Mechs.Assemblies.CascadeArm;
+import org.firstinspires.ftc.teamcode.RobotModel.Mechs.Assemblies.MechAssembly;
 
 public  class DoublyLimitedMotor extends MechComponent{
 
@@ -63,6 +65,27 @@ public  class DoublyLimitedMotor extends MechComponent{
         }
 
         motor.setPower(power);
+    }
+
+    public class AutonomousDLMBehaviors extends MechComponent.AutonomousComponentBehaviors{
+        public void moveMotor(double power){
+            motor.setPower(power);
+        }
+        public void stop(){
+            motor.setPower(0);
+        }
+        public void goForward(){
+            motor.setPower(1);
+        }
+        public void goReverse(){
+            motor.setPower(-1);
+        }
+    }
+    private final AutonomousDLMBehaviors auton = new AutonomousDLMBehaviors();
+
+    @Override
+    public AutonomousDLMBehaviors getAutonomousBehaviors() {
+        return auton;
     }
 
     @Override
