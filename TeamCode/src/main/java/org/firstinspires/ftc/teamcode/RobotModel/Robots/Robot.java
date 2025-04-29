@@ -26,4 +26,13 @@ public abstract class Robot
         driveTrain.drive(gamepad1);
         mechAssembly.giveInstructions(gamepad2);
     }
+
+    public abstract class AutonomousRobot {
+        public AutonomousRobot(
+                DriveTrain.AutonomousDriving driveTrain,
+                MechAssembly.AutonomousMechBehaviors mechAssembly
+        ){}
+    }
+
+    public abstract <T extends AutonomousRobot> T getAutonomousRobot();
 }

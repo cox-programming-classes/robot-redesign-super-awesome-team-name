@@ -9,6 +9,5 @@ public abstract class DriveTrain
     public abstract class AutonomousDriving {}
     public abstract <T extends AutonomousDriving> T getAutonomousDriving();
     public abstract void drive(Gamepad gamepad);
-
     public abstract void updateTelemetry(Telemetry telemetry);
 }
