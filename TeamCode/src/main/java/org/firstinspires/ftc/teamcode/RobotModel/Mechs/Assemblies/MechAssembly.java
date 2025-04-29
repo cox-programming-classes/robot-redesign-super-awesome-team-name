@@ -11,11 +11,7 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
  */
 public abstract class MechAssembly
 {
-    public abstract class AutonomousMechBehaviors
-    {
-
-    }
-
+    public abstract class AutonomousMechBehaviors { }
     public abstract <T extends AutonomousMechBehaviors> T getAutonomousBehaviors();
 
     /**

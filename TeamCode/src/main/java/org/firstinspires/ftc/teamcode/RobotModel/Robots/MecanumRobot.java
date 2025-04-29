@@ -9,16 +9,17 @@ import org.firstinspires.ftc.teamcode.RobotModel.Mechs.Assemblies.CascadeArm;
 
 public class MecanumRobot extends Robot
 {
-    @Override
-    public AutonomousMecanumRobot getAutonomousRobot() {
-        return auton;
-    }
-
     public class AutonomousMecanumRobot extends AutonomousRobot
     {
+        /**
+         * public final exposes the AutonomousDriving functions of the MecanumDrive
+         * but none of the drive trains actual STATE.
+         */
         public final MecanumDrive.AutonomousMecanumDrive driveTrain;
         public final CascadeArm.AutonomousCascadeArmBehaviors mechAssembly;
-        public AutonomousMecanumRobot(MecanumDrive.AutonomousMecanumDrive driveTrain, CascadeArm.AutonomousCascadeArmBehaviors mechAssembly)
+        public AutonomousMecanumRobot(
+                MecanumDrive.AutonomousMecanumDrive driveTrain,
+                CascadeArm.AutonomousCascadeArmBehaviors mechAssembly)
         {
             super(driveTrain, mechAssembly);
             this.driveTrain = driveTrain;
@@ -27,6 +28,11 @@ public class MecanumRobot extends Robot
     }
 
     private final AutonomousMecanumRobot auton;
+    @Override
+    public AutonomousMecanumRobot getAutonomousRobot() {
+        return auton;
+    }
+
 
     public MecanumRobot(HardwareMap hardwareMap)
     {
@@ -41,6 +47,8 @@ public class MecanumRobot extends Robot
                 );
         mechAssembly = new CascadeArm(hardwareMap);
 
-        auton = new AutonomousMecanumRobot(driveTrain.getAutonomousDriving(), mechAssembly.getAutonomousBehaviors());
+        auton = new AutonomousMecanumRobot(
+                driveTrain.getAutonomousDriving(),
+                mechAssembly.getAutonomousBehaviors());
     }
 }

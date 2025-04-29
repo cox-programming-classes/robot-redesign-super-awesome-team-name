@@ -22,6 +22,9 @@ public class ExampleAutonomousStrategies
             ThreadExtensions.TrySleep(1000);
             robot.driveTrain.drive(0, 0, 0);
             robot.mechAssembly.cascade.stop();
+
+            robot.driveTrain.spinInPlace();
+            ThreadExtensions.TrySleep(30000);
         };
     }
 }

@@ -17,9 +17,16 @@ public class MecanumDrive extends DriveTrain
     {
         // TODO: Write the Autonomous Methods!
 
+        public void spinInPlace()
+        {
+            LB.setPower(1);
+            LF.setPower(1);
+            RB.setPower(-1);
+            RF.setPower(-1);
+        }
         public void drive(double x, double y, double t)
         {
-
+            LB.setPower(1);
         }
     }
 

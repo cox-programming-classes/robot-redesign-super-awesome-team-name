@@ -10,12 +10,26 @@ public abstract class Robot
 {
     public abstract class AutonomousRobot
     {
-        public AutonomousRobot(DriveTrain.AutonomousDriving driveTrain, MechAssembly.AutonomousMechBehaviors mechAssembly)
+        /**
+         * This doesn't actually do anything with these parameters. It DOES require that any
+         * extension of this class MUST include matching parameters in its constructor
+         * @param driveTrain Any AutonomousDriving implementation
+         * @param mechAssembly Any Aut
+         */
+        public AutonomousRobot(
+                DriveTrain.AutonomousDriving driveTrain,
+                MechAssembly.AutonomousMechBehaviors mechAssembly)
         {
             // this requires that any inheriting classes must provide these types of parameters.
         }
     }
 
+    /**
+     * This abstract method definition tells inheriting classes that they MUST define a
+     * way to run Autonomously.
+     * @return a CONCRETE implementation of the ABSTRACT AutonomousRobot type.
+     * @param <T> Any type which extends AutonomousRobot
+     */
     public abstract <T extends AutonomousRobot> T getAutonomousRobot();
 
     protected DriveTrain driveTrain;
