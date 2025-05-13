@@ -6,6 +6,9 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public abstract class MechComponent
 {
+    public abstract class AutonomousComponentBehaviors { }
+    public abstract <T extends AutonomousComponentBehaviors> T getAutonomousBehaviors();
+
     /**
      * Override with an implemenation that applies to the Mech in question.
      */

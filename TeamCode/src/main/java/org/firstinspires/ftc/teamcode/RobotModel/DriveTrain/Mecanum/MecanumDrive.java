@@ -13,6 +13,31 @@ import org.firstinspires.ftc.teamcode.RobotModel.DriveTrain.DriveTrain;
 
 public class MecanumDrive extends DriveTrain
 {
+    public class AutonomousMecanumDrive extends AutonomousDriving
+    {
+        // TODO: Write the Autonomous Methods!
+
+        public void spinInPlace()
+        {
+            LB.setPower(1);
+            LF.setPower(1);
+            RB.setPower(-1);
+            RF.setPower(-1);
+        }
+        public void drive(double x, double y, double t)
+        {
+            LB.setPower(1);
+        }
+    }
+
+    private final AutonomousMecanumDrive auton = new AutonomousMecanumDrive();
+
+    @Override
+    public AutonomousMecanumDrive getAutonomousDriving()
+    {
+        return auton;
+    }
+
     // these can be declared Final because once they are initialized they should not be changed.
     private final DcMotor LB;
     private final DcMotor LF;
@@ -48,7 +73,9 @@ public class MecanumDrive extends DriveTrain
         }
     }
 
-    public MecanumDrive(HardwareMap hardwareMap, OrientationConfiguration orientationConfiguration)
+    public MecanumDrive(
+            HardwareMap hardwareMap,
+            OrientationConfiguration orientationConfiguration)
     {
         LB = hardwareMap.get(DcMotor.class, "lb");
         LB.setDirection(orientationConfiguration.getLb());
@@ -109,13 +136,9 @@ public class MecanumDrive extends DriveTrain
     @Override
     public void drive(Gamepad gamepad)
     {
-        double vertical;
-        double horizontal;
-        double turn;
-
-        vertical = GamepadExtensions.GetLeftStickY(gamepad);
-        horizontal = GamepadExtensions.GetLeftStickX(gamepad);
-        turn = GamepadExtensions.GetRightStickX(gamepad);
+        double vertical = GamepadExtensions.GetLeftStickY(gamepad);
+        double horizontal = GamepadExtensions.GetLeftStickX(gamepad);
+        double turn = GamepadExtensions.GetRightStickX(gamepad);
 
         double angle = Math.atan2(vertical, horizontal);
         double magnitude = Math.sqrt(Math.pow(horizontal, 2) + Math.pow(vertical, 2));

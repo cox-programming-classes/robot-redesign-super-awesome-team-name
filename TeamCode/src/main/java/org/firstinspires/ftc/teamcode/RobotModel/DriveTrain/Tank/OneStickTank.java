@@ -8,12 +8,12 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Extensions.GamepadExtensions;
 import org.firstinspires.ftc.teamcode.RobotModel.DriveTrain.DriveTrain;
-import org.firstinspires.ftc.teamcode.RobotModel.DriveTrain.Mecanum.MecanumDrive;
 
 
 public class OneStickTank extends DriveTrain
 {
-    private class LeroyState extends DriveTrain.AutonomousDriving
+
+    private class LeroyState extends AutonomousDriving
     {
         ElapsedTime _stateTimer;
         double _chargeTime;
@@ -61,6 +61,12 @@ public class OneStickTank extends DriveTrain
         }
     }
 
+    @Override
+    public LeroyState getAutonomousDriving()
+    {
+        return leroyState;
+    }
+
     // these can be declared Final because once they are initialized they should not be changed.
     private final DcMotor left, right;
     private final LeroyState leroyState = new LeroyState(10);
@@ -74,11 +80,6 @@ public class OneStickTank extends DriveTrain
     {
         left = hardwareMap.get(DcMotor.class, "leftTread");
         right = hardwareMap.get(DcMotor.class, "rightTread");
-    }
-
-    @Override
-    public LeroyState getAutonomousDriving() {
-        return leroyState;
     }
 
     @Override

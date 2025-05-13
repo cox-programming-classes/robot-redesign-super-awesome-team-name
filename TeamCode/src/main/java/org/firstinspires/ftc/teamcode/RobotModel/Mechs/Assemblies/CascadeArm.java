@@ -9,7 +9,29 @@ import org.firstinspires.ftc.teamcode.RobotModel.DriveTrain.Mecanum.MecanumDrive
 import org.firstinspires.ftc.teamcode.RobotModel.Mechs.Components.Claw;
 import org.firstinspires.ftc.teamcode.RobotModel.Mechs.Components.DoublyLimitedMotor;
 
-public class CascadeArm extends MechAssembly {
+public class CascadeArm extends MechAssembly
+{
+    public class AutonomousCascadeArmBehaviors extends AutonomousMechBehaviors
+    {
+        public final DoublyLimitedMotor.AutonomousDLMBehaviors cascade;
+        public final DoublyLimitedMotor.AutonomousDLMBehaviors drawbridge;
+        public final Claw.AutonomousClawBehaviors claw;
+
+        public AutonomousCascadeArmBehaviors(DoublyLimitedMotor.AutonomousDLMBehaviors cascade, DoublyLimitedMotor.AutonomousDLMBehaviors drawbridge, Claw.AutonomousClawBehaviors claw) {
+            this.cascade = cascade;
+            this.drawbridge = drawbridge;
+            this.claw = claw;
+        }
+    }
+
+    private final AutonomousCascadeArmBehaviors auton;
+
+    @Override
+    public AutonomousCascadeArmBehaviors getAutonomousBehaviors()
+    {
+        return auton;
+    }
+
     private final DoublyLimitedMotor cascade;
     private final DoublyLimitedMotor drawbridge;
     private final Claw claw;
@@ -19,11 +41,13 @@ public class CascadeArm extends MechAssembly {
                 "cascadeMotor",
                 "topLiftLimit",
                 "bottomLiftLimit",
-                (gamepad, dlm) -> {
+                (gamepad, dlm) ->
+                {
                  double power = GamepadExtensions.GetLeftStickY(gamepad);
                  dlm.setPower(power);
                 },
-                ((dlm, telemetry) -> {
+                ((dlm, telemetry) ->
+                {
                     telemetry.addData("Can Go Up", dlm.canGoForward());
                     telemetry.addData("Can Go Down", dlm.canGoReverse());
                 })
@@ -52,6 +76,11 @@ public class CascadeArm extends MechAssembly {
                     telemetry.addData("Claw Position", servo.getPosition());
                 }
         );
+
+        auton = new AutonomousCascadeArmBehaviors(
+                cascade.getAutonomousBehaviors(),
+                drawbridge.getAutonomousBehaviors(),
+                claw.getAutonomousBehaviors());
     }
 
     public class AutonomousCascadeArmBehaviors extends MechAssembly.AutonomousMechBehaviors

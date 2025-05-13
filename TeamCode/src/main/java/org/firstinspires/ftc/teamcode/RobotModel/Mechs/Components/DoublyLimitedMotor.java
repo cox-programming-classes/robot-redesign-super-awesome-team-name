@@ -13,6 +13,25 @@ import org.firstinspires.ftc.teamcode.RobotModel.Mechs.Assemblies.MechAssembly;
 
 public  class DoublyLimitedMotor extends MechComponent{
 
+    public class AutonomousDLMBehaviors extends MechComponent.AutonomousComponentBehaviors
+    {
+        // TODO: What Autonomous Behaviors Go here?
+
+        public void goForward()
+        {
+            setPower(1);
+        }
+
+        public void stop()
+        {
+            setPower(0);
+        }
+
+        public void goBackward()
+        {
+            setPower(-1);
+        }
+    }
     public interface DoublyLimitedMotorControlStrategy extends IControlStrategy{
         public void move(Gamepad gamepad, DoublyLimitedMotor doublyLimitedMotor);
     }
@@ -26,6 +45,7 @@ public  class DoublyLimitedMotor extends MechComponent{
     private TouchSensor reverseSensor;
     private DoublyLimitedMotorControlStrategy strategy;
 
+    private AutonomousDLMBehaviors auton = new AutonomousDLMBehaviors();
     protected DoublyLimitedMotorTelemetryStrategy telemetryStrategy;
 
     /**
@@ -82,6 +102,11 @@ public  class DoublyLimitedMotor extends MechComponent{
         }
     }
     private final AutonomousDLMBehaviors auton = new AutonomousDLMBehaviors();
+
+    @Override
+    public AutonomousDLMBehaviors getAutonomousBehaviors() {
+        return auton;
+    }
 
     @Override
     public AutonomousDLMBehaviors getAutonomousBehaviors() {

@@ -8,6 +8,25 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public class SpinnyIntake extends MechComponent
 {
+    public class AutonomousIntakeBehaviors extends MechComponent.AutonomousComponentBehaviors
+    {
+        public void startIntake()
+        {
+            intake.setPower(1);
+        }
+
+        public void stopIntake()
+        {
+            intake.setPower(0);
+        }
+
+        public void reverseIntake()
+        {
+            intake.setPower(-1);
+        }
+    }
+
+
     public interface SpinnyIntakeControlStrategy extends IControlStrategy
     {
         /**
@@ -25,7 +44,7 @@ public class SpinnyIntake extends MechComponent
 
     protected SpinnyIntakeControlStrategy strategy;
 
-
+    private final AutonomousIntakeBehaviors auton = new AutonomousIntakeBehaviors();;
 
     public SpinnyIntake(
             HardwareMap hardwareMap,
@@ -36,6 +55,11 @@ public class SpinnyIntake extends MechComponent
         intake = hardwareMap.get(DcMotor.class, motorName);
         // pointer magic ... just be clear that THIS strategy is a SpinnyIntakeStrategy.
         this.strategy = (SpinnyIntakeControlStrategy) super.strategy;
+    }
+
+    @Override
+    public AutonomousIntakeBehaviors getAutonomousBehaviors() {
+        return auton;
     }
 
     @Override

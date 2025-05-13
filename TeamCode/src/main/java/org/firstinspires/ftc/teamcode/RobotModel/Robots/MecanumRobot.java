@@ -6,10 +6,34 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.firstinspires.ftc.teamcode.RobotModel.DriveTrain.DriveTrain;
 import org.firstinspires.ftc.teamcode.RobotModel.DriveTrain.Mecanum.MecanumDrive;
 import org.firstinspires.ftc.teamcode.RobotModel.Mechs.Assemblies.CascadeArm;
-import org.firstinspires.ftc.teamcode.RobotModel.Mechs.Assemblies.MechAssembly;
 
 public class MecanumRobot extends Robot
 {
+    public class AutonomousMecanumRobot extends AutonomousRobot
+    {
+        /**
+         * public final exposes the AutonomousDriving functions of the MecanumDrive
+         * but none of the drive trains actual STATE.
+         */
+        public final MecanumDrive.AutonomousMecanumDrive driveTrain;
+        public final CascadeArm.AutonomousCascadeArmBehaviors mechAssembly;
+        public AutonomousMecanumRobot(
+                MecanumDrive.AutonomousMecanumDrive driveTrain,
+                CascadeArm.AutonomousCascadeArmBehaviors mechAssembly)
+        {
+            super(driveTrain, mechAssembly);
+            this.driveTrain = driveTrain;
+            this.mechAssembly = mechAssembly;
+        }
+    }
+
+    private final AutonomousMecanumRobot auton;
+    @Override
+    public AutonomousMecanumRobot getAutonomousRobot() {
+        return auton;
+    }
+
+
     public MecanumRobot(HardwareMap hardwareMap)
     {
         driveTrain = new MecanumDrive(
@@ -22,29 +46,9 @@ public class MecanumRobot extends Robot
                     )
                 );
         mechAssembly = new CascadeArm(hardwareMap);
-        auton = new AutonomousMecanumRobot(driveTrain.getAutonomousDriving(), mechAssembly.getAutonomousBehaviors());
-    }
 
-    public class AutonomousMecanumRobot extends AutonomousRobot{
-        public final MecanumDrive.AutonomousMecanumDrive driveTrain;
-        public final CascadeArm.AutonomousCascadeArmBehaviors mechAssembly;
-
-        public AutonomousMecanumRobot(
-                MecanumDrive.AutonomousMecanumDrive driveTrain,
-                CascadeArm.AutonomousCascadeArmBehaviors mechAssembly
-        )
-        {
-            super(driveTrain, mechAssembly);
-            this.driveTrain = driveTrain;
-            this.mechAssembly = mechAssembly;
-        }
-    }
-
-
-    private final AutonomousMecanumRobot auton;
-
-    @Override
-    public AutonomousMecanumRobot getAutonomousRobot() {
-        return auton;
+        auton = new AutonomousMecanumRobot(
+                driveTrain.getAutonomousDriving(),
+                mechAssembly.getAutonomousBehaviors());
     }
 }

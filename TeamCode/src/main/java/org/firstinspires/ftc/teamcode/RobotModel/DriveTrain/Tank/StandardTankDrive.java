@@ -10,6 +10,19 @@ import org.firstinspires.ftc.teamcode.RobotModel.DriveTrain.DriveTrain;
 
 public class StandardTankDrive extends DriveTrain
 {
+    public class AutonomousTankDrive extends AutonomousDriving
+    {
+
+    }
+
+    private final AutonomousTankDrive auton = new AutonomousTankDrive();
+
+    @Override
+    public AutonomousTankDrive getAutonomousDriving()
+    {
+        return auton;
+    }
+
     // these can be declared Final because once they are initialized they should not be changed.
     private final DcMotor left, right;
 
