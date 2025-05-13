@@ -35,7 +35,7 @@ public abstract class Robot
     protected DriveTrain driveTrain;
     protected MechAssembly mechAssembly;
 
-    public void updateTelemetry(Telemetry telemetry){
+    public void updateTelemetry(Telemetry telemetry) {
         driveTrain.updateTelemetry(telemetry);
         mechAssembly.updateTelemetry(telemetry);
     }

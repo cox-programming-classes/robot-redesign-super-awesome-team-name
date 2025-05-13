@@ -73,7 +73,9 @@ public class MecanumDrive extends DriveTrain
         }
     }
 
-    public MecanumDrive(HardwareMap hardwareMap, OrientationConfiguration orientationConfiguration)
+    public MecanumDrive(
+            HardwareMap hardwareMap,
+            OrientationConfiguration orientationConfiguration)
     {
         LB = hardwareMap.get(DcMotor.class, "lb");
         LB.setDirection(orientationConfiguration.getLb());
@@ -89,13 +91,9 @@ public class MecanumDrive extends DriveTrain
     @Override
     public void drive(Gamepad gamepad)
     {
-        double vertical;
-        double horizontal;
-        double turn;
-
-        vertical = GamepadExtensions.GetLeftStickY(gamepad);
-        horizontal = GamepadExtensions.GetLeftStickX(gamepad);
-        turn = GamepadExtensions.GetRightStickX(gamepad);
+        double vertical = GamepadExtensions.GetLeftStickY(gamepad);
+        double horizontal = GamepadExtensions.GetLeftStickX(gamepad);
+        double turn = GamepadExtensions.GetRightStickX(gamepad);
 
         double angle = Math.atan2(vertical, horizontal);
         double magnitude = Math.sqrt(Math.pow(horizontal, 2) + Math.pow(vertical, 2));

@@ -40,11 +40,13 @@ public class CascadeArm extends MechAssembly
                 "cascadeMotor",
                 "topLiftLimit",
                 "bottomLiftLimit",
-                (gamepad, dlm) -> {
+                (gamepad, dlm) ->
+                {
                  double power = GamepadExtensions.GetLeftStickY(gamepad);
                  dlm.setPower(power);
                 },
-                ((dlm, telemetry) -> {
+                ((dlm, telemetry) ->
+                {
                     telemetry.addData("Can Go Up", dlm.canGoForward());
                     telemetry.addData("Can Go Down", dlm.canGoReverse());
                 })
