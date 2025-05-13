@@ -83,16 +83,6 @@ public class CascadeArm extends MechAssembly
                 claw.getAutonomousBehaviors());
     }
 
-    public class AutonomousCascadeArmBehaviors extends MechAssembly.AutonomousMechBehaviors
-    {
-        
-    }
-
-    private final AutonomousCascadeArmBehaviors auton = new AutonomousCascadeArmBehaviors();
-
-    @Override
-    public AutonomousCascadeArmBehaviors getAutonomousBehaviors() { return auton; }
-
     @Override
     public void giveInstructions(Gamepad gamepad) {
         cascade.move(gamepad);

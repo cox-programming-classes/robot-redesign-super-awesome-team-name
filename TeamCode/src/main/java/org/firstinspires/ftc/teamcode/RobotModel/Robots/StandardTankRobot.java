@@ -10,4 +10,9 @@ public class StandardTankRobot extends Robot
     {
         driveTrain = new StandardTankDrive(hardwareMap);
     }
+
+    @Override
+    public <T extends AutonomousRobot> T getAutonomousRobot() {
+        return null;
+    }
 }

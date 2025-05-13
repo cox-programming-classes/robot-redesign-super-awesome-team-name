@@ -12,4 +12,9 @@ public class OneStickTankRobot extends Robot
         mechAssembly = new ExampleIntakeAssembly(hardwareMap);
         driveTrain = new OneStickTank(hardwareMap);
     }
+
+    @Override
+    public <T extends AutonomousRobot> T getAutonomousRobot() {
+        return null;
+    }
 }

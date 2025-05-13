@@ -87,26 +87,6 @@ public  class DoublyLimitedMotor extends MechComponent{
         motor.setPower(power);
     }
 
-    public class AutonomousDLMBehaviors extends MechComponent.AutonomousComponentBehaviors{
-        public void moveMotor(double power){
-            motor.setPower(power);
-        }
-        public void stop(){
-            motor.setPower(0);
-        }
-        public void goForward(){
-            motor.setPower(1);
-        }
-        public void goReverse(){
-            motor.setPower(-1);
-        }
-    }
-    private final AutonomousDLMBehaviors auton = new AutonomousDLMBehaviors();
-
-    @Override
-    public AutonomousDLMBehaviors getAutonomousBehaviors() {
-        return auton;
-    }
 
     @Override
     public AutonomousDLMBehaviors getAutonomousBehaviors() {
