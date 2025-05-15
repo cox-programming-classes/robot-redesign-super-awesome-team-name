@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.AutonStrategies.ExampleAutonomousStrategies;
-import org.firstinspires.ftc.teamcode.AutonStrategies.IAutonomousStrategy;
+import org.firstinspires.ftc.teamcode.AutonStrategies.IAutonStrategy;
 import org.firstinspires.ftc.teamcode.RobotModel.Robots.MecanumRobot;
 
 
@@ -12,7 +12,7 @@ import org.firstinspires.ftc.teamcode.RobotModel.Robots.MecanumRobot;
 public class AutonomousExample extends LinearOpMode
 {
     private MecanumRobot robot;
-    private IAutonomousStrategy autonStrategy;
+    private IAutonStrategy autonStrategy;
 
     public AutonomousExample()
     {

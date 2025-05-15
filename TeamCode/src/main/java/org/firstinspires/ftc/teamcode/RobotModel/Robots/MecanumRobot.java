@@ -3,7 +3,6 @@ package org.firstinspires.ftc.teamcode.RobotModel.Robots;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-import org.firstinspires.ftc.teamcode.RobotModel.DriveTrain.DriveTrain;
 import org.firstinspires.ftc.teamcode.RobotModel.DriveTrain.Mecanum.MecanumDrive;
 import org.firstinspires.ftc.teamcode.RobotModel.Mechs.Assemblies.CascadeArm;
 
@@ -16,10 +15,10 @@ public class MecanumRobot extends Robot
          * but none of the drive trains actual STATE.
          */
         public final MecanumDrive.AutonomousMecanumDrive driveTrain;
-        public final CascadeArm.AutonomousCascadeArmBehaviors mechAssembly;
+        public final CascadeArm.AutonomousCascadeArm mechAssembly;
         public AutonomousMecanumRobot(
                 MecanumDrive.AutonomousMecanumDrive driveTrain,
-                CascadeArm.AutonomousCascadeArmBehaviors mechAssembly)
+                CascadeArm.AutonomousCascadeArm mechAssembly)
         {
             super(driveTrain, mechAssembly);
             this.driveTrain = driveTrain;

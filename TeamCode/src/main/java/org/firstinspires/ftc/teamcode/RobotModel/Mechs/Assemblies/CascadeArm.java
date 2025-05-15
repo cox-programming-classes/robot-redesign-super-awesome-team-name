@@ -5,29 +5,32 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Extensions.GamepadExtensions;
-import org.firstinspires.ftc.teamcode.RobotModel.DriveTrain.Mecanum.MecanumDrive;
 import org.firstinspires.ftc.teamcode.RobotModel.Mechs.Components.Claw;
 import org.firstinspires.ftc.teamcode.RobotModel.Mechs.Components.DoublyLimitedMotor;
 
 public class CascadeArm extends MechAssembly
 {
-    public class AutonomousCascadeArmBehaviors extends AutonomousMechBehaviors
+    public class AutonomousCascadeArm extends AutonomousMechBehaviors
     {
         public final DoublyLimitedMotor.AutonomousDLMBehaviors cascade;
         public final DoublyLimitedMotor.AutonomousDLMBehaviors drawbridge;
         public final Claw.AutonomousClawBehaviors claw;
 
-        public AutonomousCascadeArmBehaviors(DoublyLimitedMotor.AutonomousDLMBehaviors cascade, DoublyLimitedMotor.AutonomousDLMBehaviors drawbridge, Claw.AutonomousClawBehaviors claw) {
+        public AutonomousCascadeArm(
+                DoublyLimitedMotor.AutonomousDLMBehaviors cascade,
+                DoublyLimitedMotor.AutonomousDLMBehaviors drawbridge,
+                Claw.AutonomousClawBehaviors claw)
+        {
             this.cascade = cascade;
             this.drawbridge = drawbridge;
             this.claw = claw;
         }
     }
 
-    private final AutonomousCascadeArmBehaviors auton;
+    private final AutonomousCascadeArm auton;
 
     @Override
-    public AutonomousCascadeArmBehaviors getAutonomousBehaviors()
+    public AutonomousCascadeArm getAutonomousBehaviors()
     {
         return auton;
     }
@@ -77,7 +80,7 @@ public class CascadeArm extends MechAssembly
                 }
         );
 
-        auton = new AutonomousCascadeArmBehaviors(
+        auton = new AutonomousCascadeArm(
                 cascade.getAutonomousBehaviors(),
                 drawbridge.getAutonomousBehaviors(),
                 claw.getAutonomousBehaviors());

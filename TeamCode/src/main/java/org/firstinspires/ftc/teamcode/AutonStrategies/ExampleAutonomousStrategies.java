@@ -8,7 +8,7 @@ import org.firstinspires.ftc.teamcode.RobotModel.Robots.MecanumRobot;
 public class ExampleAutonomousStrategies
 {
     /** make it dance! */
-    public static IAutonomousStrategy MecanumAutonDance(MecanumRobot.AutonomousMecanumRobot robot)
+    public static IAutonStrategy MecanumAutonDance(MecanumRobot.AutonomousMecanumRobot robot)
     {
         return () ->
         {
