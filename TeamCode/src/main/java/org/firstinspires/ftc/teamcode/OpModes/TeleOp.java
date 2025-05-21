@@ -28,6 +28,8 @@ public class TeleOp extends LinearOpMode
         while (opModeIsActive()) {
             robot.update(gamepad1, gamepad2);
             robot.updateTelemetry(telemetry);
+
+            double time = this.getRuntime();
         }
     }
 }

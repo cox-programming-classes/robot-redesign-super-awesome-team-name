@@ -6,9 +6,11 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.IMU;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Extensions.GamepadExtensions;
+import org.firstinspires.ftc.teamcode.Extensions.TurnDirection;
 import org.firstinspires.ftc.teamcode.RobotModel.DriveTrain.DriveTrain;
 
 public class MecanumDrive extends DriveTrain
@@ -16,6 +18,13 @@ public class MecanumDrive extends DriveTrain
     public class AutonomousMecanumDrive extends AutonomousDriving
     {
         // TODO: Write the Autonomous Methods!
+        public void turnToAngle(double degrees) {
+            while(Math.abs(degrees)>180)
+                degrees %=180;
+
+            double yaw = imu.getRobotYawPitchRollAngles().getYaw();
+        }
+
         public void drive(double x, double y, double t)
         {
             double angle = Math.atan2(y, x);
@@ -50,13 +59,15 @@ public class MecanumDrive extends DriveTrain
             LF.setPower(lf);
             LB.setPower(lb);
         }
-        public void spinInPlace()
+        public void spin(TurnDirection direction)
         {
-            LB.setPower(1);
-            LF.setPower(1);
-            RB.setPower(-1);
-            RF.setPower(-1);
+            double dir = direction==TurnDirection.RIGHT? 1:-1;
+            LB.setPower(dir);
+            LF.setPower(dir);
+            RB.setPower(-dir);
+            RF.setPower(-dir);
         }
+
     }
 
 
@@ -66,6 +77,7 @@ public class MecanumDrive extends DriveTrain
     private final DcMotor LF;
     private final DcMotor RB;
     private final DcMotor RF;
+    private final IMU imu;
 
     public static class OrientationConfiguration{
         DcMotorSimple.Direction lb, lf, rb, rf;
@@ -108,6 +120,8 @@ public class MecanumDrive extends DriveTrain
         RB.setDirection(orientationConfiguration.getRb());
         RF = hardwareMap.get(DcMotor.class, "rf");
         RF.setDirection(orientationConfiguration.getRf());
+
+        imu = hardwareMap.get(IMU.class, "imu");
 
     }
 
