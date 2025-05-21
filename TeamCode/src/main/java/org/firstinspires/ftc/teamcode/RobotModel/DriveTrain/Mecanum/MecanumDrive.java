@@ -128,8 +128,8 @@ public class MecanumDrive extends DriveTrain
         double angle = Math.atan2(vertical, horizontal);
         double magnitude = Math.sqrt(Math.pow(horizontal, 2) + Math.pow(vertical, 2));
 
-        double y1 = Math.sin(angle + Math.PI/4) + magnitude;
-        double y2 = Math.sin(angle - Math.PI/4) + magnitude;
+        double y1 = Math.sin(angle + Math.PI/4) * magnitude;
+        double y2 = Math.sin(angle - Math.PI/4) * magnitude;
 
         double lf = y1 + turn;
         double lb = y2 + turn;
