@@ -29,6 +29,7 @@ public class TeleOp extends LinearOpMode
             robot.update(gamepad1, gamepad2);
             robot.updateTelemetry(telemetry);
 
+            telemetry.update();
             double time = this.getRuntime();
         }
     }

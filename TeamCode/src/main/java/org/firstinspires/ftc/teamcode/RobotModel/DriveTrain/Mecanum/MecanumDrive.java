@@ -9,7 +9,9 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.IMU;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.Extensions.AngleExtensions;
 import org.firstinspires.ftc.teamcode.Extensions.GamepadExtensions;
+import org.firstinspires.ftc.teamcode.Extensions.ThreadExtensions;
 import org.firstinspires.ftc.teamcode.Extensions.TurnDirection;
 import org.firstinspires.ftc.teamcode.RobotModel.DriveTrain.DriveTrain;
 
@@ -18,11 +20,27 @@ public class MecanumDrive extends DriveTrain
     public class AutonomousMecanumDrive extends AutonomousDriving
     {
         // TODO: Write the Autonomous Methods!
+
         public void turnToAngle(double degrees) {
-            while(Math.abs(degrees)>180)
-                degrees %=180;
+            degrees = AngleExtensions.mapToIMURange(degrees);
 
             double yaw = imu.getRobotYawPitchRollAngles().getYaw();
+            double smol = AngleExtensions.getSmol(degrees, yaw);
+            while(Math.abs(smol) > 1 ) {  //can change dead-zone here
+                if (smol > 0) {
+                    spin(TurnDirection.LEFT);
+                }
+                else {
+                    spin(TurnDirection.RIGHT);
+                }
+                ThreadExtensions.TrySleep(100);
+                yaw = imu.getRobotYawPitchRollAngles().getYaw();
+                smol = AngleExtensions.getSmol(degrees, yaw);
+
+            }
+
+
+            //todo: do the naive approach using a while loop.
         }
 
         public void drive(double x, double y, double t)
@@ -180,6 +198,7 @@ public class MecanumDrive extends DriveTrain
     @Override
     public void updateTelemetry(Telemetry telemetry)
     {
-
+        double yaw = imu.getRobotYawPitchRollAngles().getYaw();
+        telemetry.addData("yaw:", yaw);
     }
 }
