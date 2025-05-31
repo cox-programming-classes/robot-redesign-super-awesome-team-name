@@ -23,7 +23,6 @@ public class MecanumDrive extends DriveTrain
 
         public void turnToAngle(double degrees) {
             degrees = AngleExtensions.mapToIMURange(degrees);
-
             double yaw = imu.getRobotYawPitchRollAngles().getYaw();
             double smol = AngleExtensions.getSmol(degrees, yaw);
             while(Math.abs(smol) > 1 ) {  //can change dead-zone here
@@ -38,9 +37,6 @@ public class MecanumDrive extends DriveTrain
                 smol = AngleExtensions.getSmol(degrees, yaw);
 
             }
-
-
-            //todo: do the naive approach using a while loop.
         }
 
         public void drive(double x, double y, double t)
